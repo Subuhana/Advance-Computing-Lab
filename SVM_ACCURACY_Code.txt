@@ -1,0 +1,27 @@
+# Training
+# Load Data
+
+import pandas as pd
+heart = pd.read_csv("/content/heart.csv")
+x=heart[['trtbps','chol','thalachh','oldpeak']]
+y=heart['output']
+
+# Cross validation
+
+from sklearn.model_selection import train_test_split
+x_train,x_test,y_train,y_test = train_test_split(x,y,test_size=0.3,random_state=42)
+
+#Algorithm
+from sklearn.svm import SVC
+ML = SVC()
+
+# Fit data
+ML=ML.fit(x_train,y_train)
+
+# Testing
+Result = ML.predict(x_test)
+
+# Test for Accuracy 
+from sklearn.metrics import accuracy_score
+accuracy = accuracy_score(Result,y_test)
+print("Accuracy of SVM =",accuracy*100)

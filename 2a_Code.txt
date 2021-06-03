@@ -1,0 +1,23 @@
+# Training 
+# Load data
+import pandas as pd
+iris = pd.read_csv("/content/load_iris final.csv")
+x=iris[['sepal_length','sepal_width','petal_length','petal_width']]
+y=iris['species']
+
+# Algorithm
+from sklearn.svm import SVC
+ML=SVC()
+
+# Fit data
+ML=ML.fit(x,y)
+
+#Testing
+#Trial 1
+
+Result1=ML.predict([[3.7,4.9,5.2,3.3]])
+print("Result of trail 1 is = ",Result1)
+
+# Trail 2
+Result2=ML.predict([[2.5,3.8,4.6,5.2]])
+print("Result of trail 2 is = ", Result2)

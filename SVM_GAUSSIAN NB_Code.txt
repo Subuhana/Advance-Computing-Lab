@@ -1,0 +1,24 @@
+# Training
+# Load Data
+
+import pandas as pd
+heart = pd.read_csv("/content/heart.csv")
+x=heart[['trtbps','chol','thalachh','oldpeak']]
+y=heart['output']
+
+#Algorithm
+
+from sklearn.svm import SVC
+from sklearn.naive_bayes import GaussianNB
+ML1 = SVC()
+ML2 = GaussianNB()
+
+#Fit data
+ML1=ML1.fit(x,y)
+ML2=ML2.fit(x,y)
+
+#Testing 
+Result1= ML1.predict([[130,240,120,3.7]])
+Result2= ML2.predict([[130,240,120,3.7]])
+print("Output of SVM = ",Result1)
+print("Output of GAUSSIAN NB =",Result2)
