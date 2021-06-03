@@ -1,0 +1,53 @@
+# 1. Training
+# Load data
+
+import pandas as pd
+
+train=pd.read_csv("/content/train.csv")
+test=pd.read_csv("/content/test.csv")
+xtrain= train[['Age','Flight Distance','Inflight wifi service','Ease of Online booking',
+            'Food and drink', 'Seat comfort', 'Leg room service','Cleanliness', 'Departure Delay in Minutes']]
+ytrain= train['satisfaction']
+xtest=test[['Age','Flight Distance','Inflight wifi service','Ease of Online booking',
+            'Food and drink', 'Seat comfort', 'Leg room service','Cleanliness', 'Departure Delay in Minutes']]
+ytest = test['satisfaction']       
+
+
+# Algorithm
+
+from sklearn.naive_bayes import GaussianNB
+from sklearn.naive_bayes import MultinomialNB
+from sklearn.naive_bayes import BernoulliNB
+
+ML1 = GaussianNB()
+ML2 = MultinomialNB()
+ML3 = BernoulliNB()
+
+# fit data
+
+ML1 =ML1.fit(xtrain,ytrain)
+ML2 =ML2.fit(xtrain,ytrain)
+ML3 =ML3.fit(xtrain,ytrain)
+
+#2. testing for accuracy
+
+result1 = ML1.predict(xtest)
+result2 = ML2.predict(xtest)
+result3 = ML3.predict(xtest)
+
+from sklearn.metrics import accuracy_score
+score1 = accuracy_score(result1,ytest)
+score2 = accuracy_score(result2,ytest)
+score3 = accuracy_score(result3,ytest)
+
+print("Accuracy of GAUSN NB =",score1*100)
+print("Accuracy of MULTINB =",score2*100)
+print("Accuracy of BERNLI NB =",score3*100)
+
+op1 = ML1.predict(xtest)
+op2 = ML2.predict(xtest)
+op3 = ML3.predict(xtest)
+
+print("OP of GAUSSIAN NB is " , op1)
+print("OP of Multinomial NB is " , op2)
+print("OP of Bernauli NB is " , op3)
