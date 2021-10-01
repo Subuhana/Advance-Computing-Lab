@@ -1,0 +1,20 @@
+from sklearn.datasets import load_iris
+import matplotlib.pyplot as plt
+
+# load data
+iris = load_iris()
+x=iris.data
+y=iris.target
+
+# DBSCAN
+from sklearn.cluster import DBSCAN
+DB=DBSCAN()
+x=iris.data[:,0:2]
+DB= DB.fit(x)
+labels=DB.labels_
+
+#Plot
+xaxis = x[:,0]
+yaxis = x[:,1]
+plt.title("DBSCAN")
+plt.scatter(x=xaxis,y=yaxis,c=labels,cmap="rainbow")

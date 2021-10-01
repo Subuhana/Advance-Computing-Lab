@@ -1,0 +1,22 @@
+from sklearn.datasets import make_moons
+import matplotlib.pyplot as plt
+
+#Load data
+makemoon=make_moons()
+x, y = make_moons(n_samples=100, noise=0.1)
+
+#DBSCAN
+from sklearn.cluster import DBSCAN
+dbscan = DBSCAN()
+
+#Input
+dbscan=dbscan.fit(x)
+
+#Labels
+labels = dbscan.labels_
+
+#Plot
+xaxis = x[:,0]
+yaxis = x[:,1]
+plt.title("DBSCAN-Make_moon")
+plt.scatter(x=xaxis,y=yaxis,c=labels,cmap="rainbow")
