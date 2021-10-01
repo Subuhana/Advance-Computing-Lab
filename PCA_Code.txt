@@ -1,0 +1,23 @@
+from sklearn.datasets import load_iris
+import matplotlib.pyplot as plt
+
+# load data
+irisData = load_iris()
+x=irisData.data
+y=irisData.target
+target_names=irisData.target_names
+
+# 2. PCA
+from sklearn.decomposition import PCA
+pca = PCA(n_components = 2)
+pcanew =  pca.fit(x).transform(x)
+print(pcanew)
+
+# 3. Graph plotting
+import matplotlib.pyplot as plt
+xaxis = pcanew[:,0]
+plt.xlabel("PC1")
+yaxis = pcanew[:,1]
+plt.ylabel("PC2")
+plt.title("Dimensionality Reduction Using PCA")
+plt.scatter(x=xaxis,y=yaxis,cmap="rainbow")

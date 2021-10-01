@@ -1,0 +1,22 @@
+from sklearn.datasets import load_iris
+import matplotlib.pyplot as plt
+
+# load data
+irisData = load_iris()
+x=irisData.data
+y=irisData.target
+target_names=irisData.target_names
+
+# LDA
+from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
+LDA = LinearDiscriminantAnalysis()
+LDANew=LDA.fit(x,y).transform(x)
+print(LDANew)
+
+#Plot
+xaxis = LDANew[:,0]
+plt.xlabel("LD1")
+yaxis = LDANew[:,1]
+plt.ylabel("LD2")
+plt.title("Dimensionality Reduction using LDA")
+plt.scatter(x=xaxis,y=yaxis,cmap="rainbow")
