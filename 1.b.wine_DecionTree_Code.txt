@@ -1,0 +1,26 @@
+# Training 
+# Load data
+from sklearn.datasets import load_wine
+wine=load_wine()
+x=wine.data
+y=wine.target
+
+# Algorithm
+from sklearn.tree import DecisionTreeClassifier
+ML= DecisionTreeClassifier()
+
+# Fit data
+ML=ML.fit(x,y)
+
+#Testing
+Result_wine=ML.predict([[7.5,0.32,0.62,1.1,3.3,0.38,10.7,1.5,2.5,5.0,10.2,1.3,1.7]])
+print("Result of wine is = ",Result_wine)
+
+import graphviz
+from sklearn import tree
+fn=wine.feature_names
+cn=wine.target_names
+dot_data=tree.export_graphviz(ML,feature_names=fn, class_names=cn, filled=True, rounded=True, special_characters=True)
+graph=graphviz.Source(dot_data)
+graph
+graph.render("wine")

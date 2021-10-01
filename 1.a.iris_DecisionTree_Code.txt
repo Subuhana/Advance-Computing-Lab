@@ -1,0 +1,26 @@
+# Training 
+# Load data
+from sklearn.datasets import load_iris
+iris=load_iris()
+x=iris.data
+y=iris.target
+
+# Algorithm
+from sklearn.tree import DecisionTreeClassifier
+ML= DecisionTreeClassifier()
+
+# Fit data
+ML=ML.fit(x,y)
+
+#Testing
+Result_iris=ML.predict([[3.7,4.9,5.2,3.3]])
+print("Result of iris is = ",Result_iris)
+
+import graphviz
+from sklearn import tree
+fn=iris.feature_names
+cn=iris.target_names
+dot_data=tree.export_graphviz(ML,feature_names=fn, class_names=cn, filled=True, rounded=True, special_characters=True)
+graph=graphviz.Source(dot_data)
+graph
+graph.render("iris")
